@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # Ubuntu to elementary OS conversion script
 # This is my first bash script I"ve written after looking through thousands of StackExchange/StackOverflow threads and articles about writing bash scripts.
@@ -10,13 +10,13 @@ echo "This is a test script made by Harole (https://github.com/HaroleDev) to att
 
 # Remove all desktops
 ## Ubuntu
-sudo apt autoremove --purge ubuntu-desktop ubuntu-wallpapers* -y
+sudo apt autoremove --purge ubuntu-desktop ubuntu-wallpapers* ubuntu-standard ubuntu-release* ubuntu-report ubuntu-settings -y 
 ## MATE
-sudo apt autoremove --purge mate-desktop-environment mate-desktop-environment-extras ubuntu-mate-themes -y
+sudo apt autoremove --purge mate-desktop-environment mate-desktop-environment-extras ubuntu-mate* mate* -y
 ## Cinnamon
 sudo apt autoremove --purge cinnamon-desktop-environment cinnamon* -y
 ## KDE
-sudo apt autoremove --purge kde-standard -y
+sudo apt autoremove --purge kde-standard kde-full kde-plasma* -y
 
 # Adding sources
 codename=$(cat /etc/os-release | grep UBUNTU_CODENAME | cut -d = -f 2 ||
@@ -39,7 +39,7 @@ deb https://ppa.launchpadcontent.net/elementary-os/os-patches/ubuntu $codename m
 deb-src https://ppa.launchpadcontent.net/elementary-os/os-patches/ubuntu $codename main
 EOF"
 
-sudo add-apt-repository ppa:elementary-os/stable -y
+sudo add-apt-repository ppa:elementary-os/stable -y 
 sudo add-apt-repository ppa:elementary-os/os-patches -y
 
 sudo apt update && apt upgrade -y
@@ -56,8 +56,12 @@ sudo apt install elementary-desktop elementary-minimal elementary-standard -y
 # Power
 sudo apt install acpi -y
 # Miscellaneous
-sudo apt install file-roller ibus -y
-sudo apt remove unity-*
+sudo apt install org.gnome.fileroller ibus -y
+sudo apt remove unity-* -y
+
+# Removing leftovers
+sudo apt remove update-manager snapd firefox -y
+sudo apt remove gnome-calculator gnome-control-center file-roller nautilus eog gnome-disk-utility gedit gnome-system-monitor gnome-logs gnome-keyrings -y
 
 # Clean up
 sudo apt autoremove -y && sudo apt autoclean
