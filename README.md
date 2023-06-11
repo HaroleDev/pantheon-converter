@@ -5,3 +5,6 @@
 <h1 align=center>Pantheon Converter [WIP]</h1>
 
 <p align=center> Converting an existing Ubuntu installation into elementary OS (unoffically) </p>
+
+## Description
+TBD

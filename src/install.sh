@@ -4,7 +4,7 @@
 # This is my first bash script I"ve written after looking through thousands of StackExchange/StackOverflow threads and articles about writing bash scripts.
 
 echo "Welcome to the Ubuntu to elementary OS conversion script"
-echo "This is a script made by Harole (https://github.com/HaroleDev) to attempt converting from a fresh Ubuntu installation into elementary OS."
+echo "This is a script made by Harole (https://github.com/HaroleDev/pantheon-converter) to attempt converting from a fresh Ubuntu installation into elementary OS."
 
 echo # New line
 [ "$UID" -eq 0 ] || { echo "This script must be run as root."; exit 1;}
@@ -101,7 +101,7 @@ sudo rm -rf -v /var/cache/snapd/
 sudo apt autoremove --purge update-manager snapd firefox -y
 sudo rm -rf ~/snap
 
-sudo apt remove system-config-printer -y
+sudo apt remove system-config-printer software-properties-common -y
 
 # Remove promotions from Ubuntu (https://github.com/Skyedra/UnspamifyUbuntu)
 sudo pro config set apt_news=false
